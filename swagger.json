@@ -5,7 +5,7 @@
     "description": "This is an API retrieves data regarding the champions of League of Legends",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "league-of-legends-api-6r8w.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
