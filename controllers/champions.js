@@ -20,4 +20,50 @@ const getChamp = async (req, res) =>{
     }) 
 }
 
-module.exports = {getAllChamps, getChamp}
+const addChamp = async (req, res) => {
+    //#swagger.tags = ['Champions']
+    const champion = {
+        champ_name: req.body.champ_name,
+        champ_alias: req.body.champ_alias,
+        role: req.body.role,
+        difficulty: req.body.difficulty,
+        lore: req.body.lore
+    }
+    const response = await mongodb.getDatabase().db('LolBase').collection('champions').insertOne(champion)
+    if (response.acknowledged){
+        res.status(204).send()
+    } else {
+        res.status(500).json(response.error || 'Something went wrong while inserting the champion')
+    }
+}
+
+const updateChamp = async (req, res) => {
+    //#swagger.tags = ['Champion]
+    const champId = new ObjectId(req.params.id)
+    const champion = {
+        champ_name: req.body.champ_name,
+        champ_alias: req.body.champ_alias,
+        role: req.body.role,
+        difficulty: req.body.difficulty,
+        lore: req.body.lore
+    }
+    const response = await mongodb.getDatabase().db('LolBase').collection('champions').replaceOne({ _id: champId }, champion)
+    if (response.modifiedCount > 0){
+        res.status(204).send()
+    } else {
+        res.status(500).json(response.error || 'Something went wrong with updating the champion')
+    }
+}
+
+const deleteChamp = async (req, res) => {
+    //#swagger.tags = ['Champion']
+    const champId = new ObjectId(req.params.id)
+    const response = await mongodb.getDatabase().db('LolBase').collection('champions').deleteOne({ _id: champId })
+    if (response.deletedCount > 0){
+        res.status(204).send()
+    } else {
+        res.status(500).json(response.error || 'Something went wrong while deleting the champion')
+    }
+}
+
+module.exports = {getAllChamps, getChamp, addChamp, updateChamp, deleteChamp}

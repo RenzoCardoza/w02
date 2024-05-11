@@ -1,0 +1,41 @@
+//Local hhost to get every contact
+GET http://localhost:3000/champions
+
+//get user id specific
+GET http://localhost:3000/champions/663fa1582ca0ff46ef8765f7
+
+// create contact
+POST http://localhost:3000/champions HTTP/1.1
+content-type: application/json
+
+{
+    "champ_name": "Draven",
+    "champ_alias": "The Glorious Executioner",
+    "role": "Marksman",
+    "difficulty": "High",
+    "lore": "In Noxus, warriors known as Reckoners face one another 
+    in arenas where blood is spilled and strength tested—but none has 
+    ever been as celebrated as Draven. A former soldier, he found that 
+    the crowds uniquely appreciated his flair for the dramatic, and his 
+    unparalleled skill with his spinning axes. Addicted to the spectacle 
+    of his own brash perfection, Draven has sworn to defeat whomever he must 
+    to ensure that his name is chanted throughout the empire forever more."
+}
+
+PUT http://localhost:3000/champions/663fa1582ca0ff46ef8765f7 HTTP/1.1
+Content-Type: application/json
+
+{
+    "champ_name":"Alistar",
+    "champ_alias":"The Minotaur",
+    "role":"Tank",
+    "difficulty":"Low",
+    "lore":"Always a mighty warrior with a fearsome reputation, Alistar 
+    seeks revenge for the death of his clan at the hands of the Noxian empire. 
+    Though he was enslaved and forced into the life of a gladiator, his unbreakable 
+    will was what kept him from truly becoming a beast. Now, free of the chains of his 
+    former masters, he fights in the name of the downtrodden and the disadvantaged, 
+    his rage as much a weapon as his horns, hooves and fists."
+}
+
+DELETE http://localhost:3000/champions/663fb527857b31b4fb57ed14 HTTP/1.1
