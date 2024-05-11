@@ -48,7 +48,7 @@ const addChamp = async (req, res) => {
 }
 
 const updateChamp = async (req, res) => {
-    //#swagger.tags = ['Champion]
+    //#swagger.tags = ['Champions']
     const champId = new ObjectId(req.params.id)
     const champion = {
         champ_name: req.body.champ_name,
@@ -66,7 +66,7 @@ const updateChamp = async (req, res) => {
 }
 
 const deleteChamp = async (req, res) => {
-    //#swagger.tags = ['Champion']
+    //#swagger.tags = ['Champions']
     const champId = new ObjectId(req.params.id)
     const response = await mongodb.getDatabase().db('LolBase').collection('champions').deleteOne({ _id: champId })
     if (response.deletedCount > 0){

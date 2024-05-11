@@ -14,7 +14,7 @@
   "paths": {
     "/api-docs": {
       "get": {
-        "description": "This will retrieve the docs for the API",
+        "description": "This path will show the documentation for the API",
         "responses": {
           "default": {
             "description": ""
@@ -27,7 +27,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "This will retrieve the data form all the champs",
+        "description": "This path will retrieve the infos for all the champions",
         "produces": [
           "application/json"
         ],
@@ -44,7 +44,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "This path will post or create a new champ to the database",
+        "description": "This path will create or post a new document to the database",
         "parameters": [
           {
             "name": "body",
@@ -53,19 +53,19 @@
               "type": "object",
               "properties": {
                 "champ_name": {
-                  "example": "any"
+                  "example": "Yasuo"
                 },
                 "champ_alias": {
-                  "example": "any"
+                  "example": "Another name for the champ"
                 },
                 "role": {
-                  "example": "any"
+                  "example": "Fighter, Marksman, etc."
                 },
                 "difficulty": {
-                  "example": "any"
+                  "example": "Low, Moderate, High, etc."
                 },
                 "lore": {
-                  "example": "any"
+                  "example": "The story of the champ goes here"
                 }
               }
             }
@@ -89,7 +89,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "This will get all infos about one specific champion",
+        "description": "This path is to retrieve the data for one specific champion",
         "produces": [
           "application/json"
         ],
@@ -111,27 +111,59 @@
         }
       },
       "put": {
-        "tags": [],
-        "description": "This path will update the existing champ on the database",
+        "tags": [
+          "Champions"
+        ],
+        "description": "This is the path to update the infos for an existing champion",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "champ_name": {
+                  "example": "name of the champ"
+                },
+                "champ_alias": {
+                  "example": "another name for the champ"
+                },
+                "role": {
+                  "example": "Fighter, Marksman, etc."
+                },
+                "difficulty": {
+                  "example": "Low, Moderate, High, etc."
+                },
+                "lore": {
+                  "example": "The story of the champ goes here"
+                }
+              }
+            }
           }
         ],
         "responses": {
+          "204": {
+            "description": "No Content"
+          },
           "412": {
             "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
         "tags": [
-          "Champion"
+          "Champions"
         ],
-        "description": "This path will delete the info of a specific champion",
+        "description": "The path deletes the infos for the specified champion",
         "parameters": [
           {
             "name": "id",
