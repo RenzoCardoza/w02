@@ -1,0 +1,19 @@
+{
+  "name": "w02",
+  "version": "1.0.0",
+  "description": "w3-4 assignment",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "author": "renzo cardoza",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.6.1",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0"
+  }
+}
