@@ -1,17 +1,28 @@
 const express = require('express')
 const router = express.Router()
 const champController = require('../controllers/champions')
-const validation = require('../middleware/validate')
+// const validation = require('../middleware/validate')
+const validator = require('../utilities/validate')
 
 //get routes
 router.get('/', champController.getAllChamps)
 router.get('/:id', champController.getChamp)
 
 //post routes
-router.post('/', validation.saveChampion, champController.addChamp)
+router.post(
+    '/', 
+    validator.championValidation, 
+    validator.validationHandler, 
+    champController.addChamp
+)
 
 //put route
-router.put('/:id', validation.saveChampion, champController.updateChamp)
+router.put(
+    '/:id',
+    validator.championValidation,
+    validator.validationHandler, 
+    champController.updateChamp
+)
 
 //delete route
 router.delete('/:id', champController.deleteChamp)
