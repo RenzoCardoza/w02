@@ -4,7 +4,10 @@ const ObjectId = require('mongodb').ObjectId
 const getAllChamps = async (req, res) => {
     //#swagger.tags = ['Champions']
     const result = await mongodb.getDatabase().db('LolBase').collection('champions').find()
-    result.toArray().then((champions) => {
+    result.toArray().then((champions, err) => {
+        if (err) {
+            res.status(400).json({ message: err })
+        }
         res.setHeader('Content-Type', 'application/json')
         res.status(200).json(champions)
     })
@@ -12,12 +15,19 @@ const getAllChamps = async (req, res) => {
 
 const getChamp = async (req, res) =>{
     //#swagger.tags = ['Champions']
-    const champId = new ObjectId(req.params.id)
-    const result = await mongodb.getDatabase().db('LolBase').collection('champions').find({ _id: champId })
-    result.toArray().then((champions) => {
-        res.setHeader('Content-Type', 'application/json')
-        res.status(200).json(champions[0])
-    }) 
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Unable to find data with that Id')
+    } else {
+        const champId = new ObjectId(req.params.id)
+        const result = await mongodb.getDatabase().db('LolBase').collection('champions').find({ _id: champId })
+        result.toArray().then((champions, err) => {
+            if (err) {
+                res.status(400).json({ message: err })
+            }
+            res.setHeader('Content-Type', 'application/json')
+            res.status(200).json(champions[0])
+        }) 
+    }
 }
 
 const addChamp = async (req, res) => {

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Champions API",
+    "title": "League of Legends API",
     "description": "This is an API retrieves data regarding the champions of League of Legends",
     "version": "1.0.0"
   },
@@ -12,26 +12,74 @@
     "http"
   ],
   "paths": {
+    "/api-docs": {
+      "get": {
+        "description": "This will retrieve the docs for the API",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/champions/": {
       "get": {
         "tags": [
           "Champions"
         ],
-        "description": "This should retrieve data from the Champions of League of Legends",
+        "description": "This will retrieve the data form all the champs",
         "produces": [
           "application/json"
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Champions"
+        ],
+        "description": "This path will post or create a new champ to the database",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "champ_name": {
+                  "example": "any"
+                },
+                "champ_alias": {
+                  "example": "any"
+                },
+                "role": {
+                  "example": "any"
+                },
+                "difficulty": {
+                  "example": "any"
+                },
+                "lore": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -41,7 +89,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "This retrieves the data from a specific champion using the id",
+        "description": "This will get all infos about one specific champion",
         "produces": [
           "application/json"
         ],
@@ -56,6 +104,48 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [],
+        "description": "This path will update the existing champ on the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "412": {
+            "description": "Precondition Failed"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Champion"
+        ],
+        "description": "This path will delete the info of a specific champion",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
