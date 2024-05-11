@@ -5,36 +5,39 @@ const championValidation = [
         .check('champ_name')
         .trim()
         .exists()
-        .isAlpha()
-        .isEmpty()
+        .isLength({ min: 3 })
+        .isString()
         .withMessage('Invalid Name'),
     
     validator
         .check('champ_alias')
         .trim()
         .exists()
-        .isEmpty()
+        .isLength({ min: 3 })
         .withMessage('Invalid Alias'),
 
     validator
         .check('role')
         .trim()
         .exists()
-        .isEmpty()
+        .isLength({ min: 3 })
+        .isString()
         .withMessage('A role is required'),
 
     validator
         .check('difficulty')
         .trim()
         .exists()
-        .isEmpty()
+        .isLength({ min: 3 })
+        .isString()
         .withMessage('Invalid difficulty level'),
 
     validator
         .check('lore')
         .trim()
         .exists()
-        .isEmpty()
+        .isLength({ min: 3 })
+        .isString()
         .withMessage('please insert the lore for the champion')
 ]
 
