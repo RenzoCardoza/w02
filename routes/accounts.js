@@ -5,7 +5,7 @@ const validator = require('../utilities/validate')
 
 // ROUTES //  
 router.post(
-    '/account/create', 
+    '/create', 
     validator.accountValidation,
     validator.validationHandler,
     accountController.createAccount
