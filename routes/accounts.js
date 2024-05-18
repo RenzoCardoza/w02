@@ -4,8 +4,10 @@ const accountController = require('../controllers/accounts')
 const validator = require('../utilities/accountValidator')
 
 // ROUTES //  
+router.get('/', accountController.getAllAccounts)
+
 router.post(
-    '/create', 
+    '/', 
     validator.accountValidation,
     validator.validationHandler,
     accountController.createAccount
