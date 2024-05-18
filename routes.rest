@@ -28,3 +28,13 @@ Content-Type: application/json
 }
 
 DELETE http://localhost:3000/champions/663fb527857b31b4fb57ed14 HTTP/1.1
+
+
+POST http://localhost:3000/account/create HTTP/1.1
+Content-Type: application/json
+{
+    "account_first_name": "Renzo",
+    "account_last_name": "Cardoza",
+    "account_password": "FTlines1907#2",
+    "account_email": "renzocardoza@gmail.com"
+}
