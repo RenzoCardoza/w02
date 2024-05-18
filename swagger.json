@@ -12,9 +12,19 @@
     "http"
   ],
   "paths": {
+    "/login": {
+      "get": {
+        "description": "This path will try to log in using the Oauth method",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api-docs": {
       "get": {
-        "description": "This path will show the documentation for the API",
+        "description": "This path will show the docs of the API",
         "responses": {
           "default": {
             "description": ""
@@ -27,7 +37,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "This path will retrieve the infos for all the champions",
+        "description": "This will show all of the champions in the database",
         "produces": [
           "application/json"
         ],
@@ -44,7 +54,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "This path will create or post a new document to the database",
+        "description": "This will insert a new champion to the database",
         "parameters": [
           {
             "name": "body",
@@ -53,19 +63,19 @@
               "type": "object",
               "properties": {
                 "champ_name": {
-                  "example": "Yasuo"
+                  "example": "Alistar"
                 },
                 "champ_alias": {
-                  "example": "Another name for the champ"
+                  "example": "The Minotaur"
                 },
                 "role": {
-                  "example": "Fighter, Marksman, etc."
+                  "example": "Tank"
                 },
                 "difficulty": {
-                  "example": "Low, Moderate, High, etc."
+                  "example": "Low"
                 },
                 "lore": {
-                  "example": "The story of the champ goes here"
+                  "example": "The story goes here"
                 }
               }
             }
@@ -75,8 +85,11 @@
           "204": {
             "description": "No Content"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -89,7 +102,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "This path is to retrieve the data for one specific champion",
+        "description": "this will get the info of one specific champ",
         "produces": [
           "application/json"
         ],
@@ -114,7 +127,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "This is the path to update the infos for an existing champion",
+        "description": "This will update the info of a champ in the database",
         "parameters": [
           {
             "name": "id",
@@ -129,19 +142,19 @@
               "type": "object",
               "properties": {
                 "champ_name": {
-                  "example": "name of the champ"
+                  "example": "Alistar"
                 },
                 "champ_alias": {
-                  "example": "another name for the champ"
+                  "example": "The Minotaur"
                 },
                 "role": {
-                  "example": "Fighter, Marksman, etc."
+                  "example": "Tank"
                 },
                 "difficulty": {
-                  "example": "Low, Moderate, High, etc."
+                  "example": "Low"
                 },
                 "lore": {
-                  "example": "The story of the champ goes here"
+                  "example": "The story goes here"
                 }
               }
             }
@@ -151,8 +164,11 @@
           "204": {
             "description": "No Content"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -163,7 +179,7 @@
         "tags": [
           "Champions"
         ],
-        "description": "The path deletes the infos for the specified champion",
+        "description": "This will delete one champ of the database",
         "parameters": [
           {
             "name": "id",
@@ -175,6 +191,127 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/account/": {
+      "post": {
+        "tags":[
+          "Account"
+        ],
+        "description": "This will create or insert a new account to the database",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "account_first_name": {
+                  "example": "Renzo"
+                },
+                "account_last_name": {
+                  "example": "Cardoza"
+                },
+                "account_password": {
+                  "example": "FTlines1907#2"
+                },
+                "account_email": {
+                  "example": "renzocardoza@gmail.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/account/{id}": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "description": "Updates the info of an account",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "account_first_name": {
+                  "example": "any"
+                },
+                "account_last_name": {
+                  "example": "any"
+                },
+                "account_password": {
+                  "example": "any"
+                },
+                "account_email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "description": "Delete an Account from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
