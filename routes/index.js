@@ -6,7 +6,7 @@ router.use('/', require('./swagger'))
 // this will be the routes for the champions part
 router.use('/champions', require('./champions'))
 // this will be the routes for the account part
-router.use("/account", require('./accounts'))
+router.use('/account', require('./accounts'))
 
 router.get('/login', passport.authenticate('github'), (req, res) => {})
 

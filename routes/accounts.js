@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const accountController = require('../controllers/accounts')
-const validator = require('../utilities/validate')
+const validator = require('../utilities/accountValidator')
 
 // ROUTES //  
 router.post(
