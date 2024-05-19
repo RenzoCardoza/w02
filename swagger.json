@@ -14,7 +14,23 @@
   "paths": {
     "/login": {
       "get": {
+        "tags":[
+          "Account"
+        ],
         "description": "This path will try to log in using the Oauth method",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags":[
+          "Account"
+        ],
+        "description": "This will logout from the APP",
         "responses": {
           "default": {
             "description": ""
@@ -24,6 +40,9 @@
     },
     "/api-docs": {
       "get": {
+        "tags":[
+          "Development"
+        ],
         "description": "This path will show the docs of the API",
         "responses": {
           "default": {
